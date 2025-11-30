@@ -14,14 +14,12 @@ function scheduleUpdate(e) {
         ticking = true;
         requestAnimationFrame(() => {
             rect = h1.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-            let xdiff = last.x - cx;
-            let ydiff = last.y - cy;
-            const dist = Math.hypot(xdiff, ydiff) || 1;
-            const xoff = xdiff * 10 / (dist+100/dist);
-            const yoff = ydiff * 10 / (dist+100/dist);
-            h1.style.textShadow = `${xoff}px ${yoff}px 4px bisque`;
+            let xdiff = last.x - rect.left - rect.width / 2;;
+            let ydiff = last.y - rect.top - rect.height / 2;;
+            let dist = Math.hypot(xdiff, ydiff) || 1;
+            let xoff = -xdiff * 10 / (dist+100/dist);
+            let yoff = -ydiff * 10 / (dist+100/dist);
+            h1.style.textShadow = `${xoff}px ${yoff}px ${4+50/dist}px bisque`;
             ticking = false;
         });
     }
